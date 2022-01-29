@@ -1,10 +1,41 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+    <h1>Time Reaction Game</h1>
+    <button @click="start" :disabled="isPlaying" >PLAY</button>
+    <Block  v-if="isPlaying" :delay="delay" @end="endGame"/>
+    <Results v-if="showResults" :score="score" />
 </template>
+
+<script>
+import Block from './components/Block.vue'
+import Results from './components/Results.vue'
+export default {
+  name: 'App',
+  components: {
+    Block,
+    Results
+  },
+  data() {
+    return {
+      isPlaying: false,
+      delay: null,
+      score: null,
+      showResults: false
+    }
+  },
+  methods: {
+    start() {
+      this.delay = 2000 + Math.random() * 4000
+      this.isPlaying = true
+      this.showResults = false
+    },
+    endGame(reactionTimer) {
+      this.score = reactionTimer
+      this.isPlaying = false
+      this.showResults = true
+    }
+  }
+}
+</script>
 
 <style>
 #app {
@@ -12,19 +43,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #333333;
+  margin-top: 60px;
 }
-
-#nav {
-  padding: 30px;
+button {
+  background: #333333;
+  color: #e3e3e3;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin: 10px;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+button[disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
 }
 </style>

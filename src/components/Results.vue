@@ -13,11 +13,11 @@ export default {
     },
     mounted() {
         if (this.score < 250) {
-            this.rank = 'reflex guru'
+            this.rank = 'reflex guru!!!'
         } else if (this.score < 400) {
-            this.rank = 'well, you tried but you can do better'
+            this.rank = 'well, you tried but you can do better!!'
         } else {
-            this.rank = 'snail pace blud, fix up'
+            this.rank = 'snail pace blud, fix up!'
         }
     }
 }

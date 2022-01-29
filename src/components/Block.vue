@@ -15,7 +15,7 @@ export default {
         }
     },
     mounted() {
-        setTimeOut(() => {
+        setTimeout(() => {
             this.showBlock = true
             this.startTimer()
         }, this.delay)
@@ -28,7 +28,7 @@ export default {
         },
         stopTimer() {
             clearInterval(this.timer)
-            this.$emit('end, this.reactionTimer')
+            this.$emit('end', this.reactionTimer)
         }
     }
 }
@@ -37,7 +37,7 @@ export default {
 <style scoped>
 .block {
     width: 75%;
-    height: 300px;
+    height: 200px;
     border-radius: 20px;
     background: #333333;
     color: #f2f2f3;
